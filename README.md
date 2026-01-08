@@ -21,19 +21,19 @@ This project helps a telecom company find out which customers might leave the se
 I checked many features to see why customers leave. Here are the 4 main things I found:
 
 ### 1. Contract Type Analysis
-![Contract Comparison](visuals/Contract_vs_churn.png)
+![Contract Comparison](Contract_vs_churn.png)
 **Simple Observation:** There is a big difference between contract types. People who pay **month-to-month** leave very quickly. People who sign for **2 years** stay for a long time. 
 
 ### 2. Money and Time (Tenure & Charges)
-![Numerical Distribution](visuals/numerical_dist.png)
+![Numerical Distribution](numerical_dist.png)
 **Simple Observation:** New customers (low tenure) are more likely to leave. Also, when the **monthly bill is high**, more people decide to stop using the service.
 
 ### 3. Internet Service Impact
-![Internet Service](visuals/InternetService_vs_churn.png)
+![Internet Service](InternetService_vs_churn.png)
 **Simple Observation:** Customers with **Fiber Optic** internet are leaving more than DSL users. This could be because Fiber Optic is more expensive.
 
 ### 4. Gender Analysis
-![Gender Distribution](visuals/gender_vs_churn.png)
+![Gender Distribution](gender_vs_churn.png)
 **Simple Observation:** Both **Male and Female** customers behave the same way. Gender does not tell us if a customer will leave or stay.
 
 ---
@@ -53,3 +53,4 @@ I wrote the code in different "Parts" (Classes) so it is easy to read and fix.
 
 ## 📬 Contact
 If you like this project or have any questions, please feel free to message me!
+
