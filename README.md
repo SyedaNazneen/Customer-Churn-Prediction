@@ -42,7 +42,7 @@ I checked many features to see why customers leave. Here are the 4 main things I
 
 ---
 
-## ⚙️ Stage 2 & 3: How the Code Works
+## ⚙️ How the Code Works
 I wrote the code in different "Parts" (Classes) so it is easy to read and fix.
 
 ### Main Parts:
@@ -57,5 +57,6 @@ I wrote the code in different "Parts" (Classes) so it is easy to read and fix.
 
 ## 📬 Contact
 If you like this project or have any questions, please feel free to message me!
+
 
 
