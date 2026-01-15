@@ -29,17 +29,21 @@ def load_my_model():
         st.error("Model file not found in 'models/' folder!")
         return None
 
-model = load_my_model()
-
-# --- 4. INPUT SECTION (SIDEBAR) ---
-st.sidebar.header("📝 Test Scenarios")
-st.sidebar.info("Tip: Set Tenure to 1 and Charges to 150 to see High Risk.")
-
-tenure = st.sidebar.slider("Tenure (Months)", 1, 72, 12)
-monthly_charges = st.sidebar.slider("Monthly Charges ($)", 18, 150, 65)
-contract_type = st.sidebar.selectbox("Contract Type", ["Month-to-month", "One year", "Two year"])
-internet_service = st.sidebar.selectbox("Internet Service", ["Fiber optic", "DSL", "No"])
-
+# --- 3. LOAD MODEL (Improved Path) ---
+@st.cache_resource
+def load_my_model():
+    # Ye 3 alag-alag jagah check karega
+    paths_to_check = [
+        os.path.join('models', 'churn_model.pkl'),
+        'churn_model.pkl',
+        '/mount/src/customer-churn-prediction/models/churn_model.pkl'
+    ]
+    
+    for path in paths_to_check:
+        if os.path.exists(path):
+            with open(path, 'rb') as file:
+                return pickle.load(file)
+    return None
 # --- 5. PREDICTION LOGIC ---
 if model:
     if st.button("Analyze Customer Risk"):
@@ -91,5 +95,6 @@ if model:
 # --- 7. FOOTER ---
 st.divider()
 st.caption(f"Prepared by Syeda Nazneen | Project: Customer Churn Analytics")
+
 
 
