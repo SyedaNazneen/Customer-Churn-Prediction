@@ -1,0 +1,7 @@
+[ 2026-01-15 22:05:55,628 ] data_handler - INFO - Loading file from: data/churn prediction.csv
+[ 2026-01-15 22:05:55,646 ] data_handler - INFO - Data loaded successfully.
+[ 2026-01-15 22:05:55,646 ] data_handler - INFO - Cleaning data...
+[ 2026-01-15 22:05:55,652 ] data_handler - INFO - Cleaning successful.
+[ 2026-01-15 22:05:55,652 ] model_trainer - INFO - Splitting data into Train and Test
+[ 2026-01-15 22:05:56,050 ] model_trainer - INFO - Model trained with accuracy: 0.7839374555792467
+[ 2026-01-15 22:05:56,065 ] model_trainer - INFO - Model saved in models/ folder

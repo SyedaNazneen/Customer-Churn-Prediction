@@ -1,0 +1,6 @@
+[ 2026-01-15 22:02:46,609 ] data_handler - INFO - Loading file from: data/churn prediction.csv
+[ 2026-01-15 22:02:46,629 ] data_handler - INFO - Data loaded successfully.
+[ 2026-01-15 22:02:46,630 ] data_handler - INFO - Cleaning data...
+[ 2026-01-15 22:02:46,641 ] data_handler - INFO - Cleaning successful.
+[ 2026-01-15 22:02:46,641 ] model_trainer - INFO - Splitting data into Train and Test
+[ 2026-01-15 22:02:46,641 ] model_trainer - ERROR - Training failed: name 'pd' is not defined
