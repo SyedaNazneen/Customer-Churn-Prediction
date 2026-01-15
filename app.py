@@ -7,59 +7,67 @@ import numpy as np
 # --- 1. PAGE CONFIG ---
 st.set_page_config(page_title="Churn Predictor Pro", layout="wide")
 
-# --- 2. COLORFUL CSS (Custom Styling) ---
+# --- 2. PREMIUM COLORFUL CSS ---
 st.markdown("""
     <style>
-    /* Main Background */
+    /* Background Gradient */
     .stApp {
-        background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        color: white;
     }
     
-    /* Title Styling */
-    h1 {
-        color: #1E3A8A;
-        font-family: 'Helvetica', sans-serif;
+    /* Main Title - Dark Gold Color */
+    .main-title {
+        color: #fbbf24;
+        font-size: 50px;
+        font-weight: bold;
         text-align: center;
-        padding-bottom: 20px;
+        text-shadow: 2px 2px 4px #000000;
+        margin-bottom: 10px;
     }
 
     /* Sidebar Styling */
     [data-testid="stSidebar"] {
-        background-color: #1E293B !important;
+        background-color: #111827 !important;
+        border-right: 1px solid #374151;
     }
-    [data-testid="stSidebar"] h1, [data-testid="stSidebar"] h2, [data-testid="stSidebar"] label {
-        color: #F8FAFC !important;
-    }
-
-    /* Metric Boxes */
+    
+    /* Metric Boxes - Neon Blue Glow */
     div[data-testid="stMetricValue"] {
-        color: #2563EB !important;
-        font-size: 40px;
-        font-weight: bold;
+        color: #38bdf8 !important;
+        font-size: 45px !important;
+        font-weight: 800 !important;
     }
     
     .stMetric {
-        background-color: #ffffff;
-        border-left: 5px solid #2563EB;
-        padding: 20px;
-        border-radius: 15px;
-        box-shadow: 2px 4px 10px rgba(0,0,0,0.1);
+        background-color: #1f2937;
+        border: 1px solid #38bdf8;
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.2);
     }
 
-    /* Button Styling */
+    /* Analyze Button - Gradient Green */
     div.stButton > button:first-child {
-        background-color: #10B981;
+        background: linear-gradient(90deg, #10b981 0%, #059669 100%);
         color: white;
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
+        padding: 15px;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         width: 100%;
-        border-radius: 10px;
-        height: 3em;
-        transition: 0.3s;
     }
+    
     div.stButton > button:hover {
-        background-color: #059669;
-        border: 2px solid white;
+        transform: scale(1.02);
+        box-shadow: 0 0 15px #10b981;
+    }
+
+    /* Text color fix for visibility */
+    .stMarkdown, p, label {
+        color: #e2e8f0 !important;
     }
     </style>
     """, unsafe_allow_html=True)
@@ -80,23 +88,24 @@ def load_my_model():
 
 model = load_my_model()
 
-# --- 4. INPUT SECTION (SIDEBAR) ---
-st.sidebar.title("📊 Settings")
+# --- 4. SIDEBAR INPUTS ---
+st.sidebar.markdown("<h2 style='color: #fbbf24;'>📊 Configuration</h2>", unsafe_allow_html=True)
 st.sidebar.markdown("---")
 tenure = st.sidebar.slider("Tenure (Months)", 1, 72, 12)
 monthly_charges = st.sidebar.slider("Monthly Charges ($)", 18, 150, 65)
 contract_type = st.sidebar.selectbox("Contract Type", ["Month-to-month", "One year", "Two year"])
 internet_service = st.sidebar.selectbox("Internet Service", ["Fiber optic", "DSL", "No"])
 
-# --- 5. MAIN INTERFACE ---
-st.title("🎯 Customer Churn Analytics Dashboard")
-st.write("---")
+# --- 5. MAIN CONTENT ---
+st.markdown("<h1 class='main-title'>🎯 Churn Analytics Pro</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px;'>Advanced AI Model for Customer Retention</p>", unsafe_allow_html=True)
+st.markdown("---")
 
 if model is not None:
-    # Centering the button
-    left_col, mid_col, right_col = st.columns([1,2,1])
+    # Centering button
+    _, mid_col, _ = st.columns([1,2,1])
     with mid_col:
-        analyze_btn = st.button("🚀 RUN ANALYSIS")
+        analyze_btn = st.button("🚀 PREDICT CHURN RISK")
 
     if analyze_btn:
         try:
@@ -115,28 +124,32 @@ if model is not None:
 
             prob = model.predict_proba(input_data)[0][1]
             
-            st.markdown("### 📈 Prediction Results")
+            st.markdown("### 📊 Analysis Report")
             col1, col2 = st.columns(2)
             
             with col1:
+                # Logic for presentation (Manual check for better demo)
                 if prob > 0.45 or (tenure < 6 and monthly_charges > 100):
-                    st.error("## ⚠️ HIGH RISK")
-                    st.warning("Action Required: This customer might leave soon!")
+                    st.error("## ⚠️ CRITICAL: HIGH RISK")
+                    st.write("Target this customer for immediate retention offers.")
                 else:
-                    st.success("## ✅ LOW RISK")
-                    st.info("Status: This customer is satisfied and loyal.")
+                    st.success("## ✅ STATUS: LOW RISK")
+                    st.write("Customer is healthy and engaged.")
 
             with col2:
                 st.metric(label="Churn Probability", value=f"{round(prob * 100, 1)}%")
                 st.progress(prob)
                 
         except Exception as e:
-            st.error(f"Error: {e}")
+            st.error(f"Prediction logic error: {e}")
 else:
-    st.warning("⚠️ Model not found. Check GitHub 'models' folder.")
+    st.warning("⚠️ Model missing! Please upload 'churn_model.pkl' to the 'models' folder on GitHub.")
+
+
 
 # --- 6. FOOTER ---
 st.markdown("---")
 st.caption("Developed by Syeda Nazneen | Project: Customer Churn Analytics")
+
 
 
