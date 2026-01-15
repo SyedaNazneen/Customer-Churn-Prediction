@@ -66,7 +66,11 @@ The code is written in separate **Classes** to keep it professional:
 3. Run the analysis: `python main.py`
 4. Run the Web App: `streamlit run app.py`
 
+## 🌐 Live Demo
+You can try the live application here: [Customer Churn Predictor App](https://customer-churn-prediction-site.streamlit.app/)
+
 
 Prepared by: **Syeda Nazneen** 
+
 
 Date - **15 January 2026**
