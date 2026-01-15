@@ -74,4 +74,5 @@ if model:
             st.error(f"Error during prediction: {e}")
             st.info(f"Model expects {model.n_features_in_} features.")
 
-st.caption("Prepared by THE SKILL UNION Student | Project Title: Customer Churn Prediction")
+st.caption("Prepared by Vihara Tech Student : Syeda Nazneen | Project Title: Customer Churn Prediction")
+
